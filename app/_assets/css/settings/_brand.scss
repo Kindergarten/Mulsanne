@@ -1,5 +1,20 @@
 /*------------------------------------*\
     #BRAND
 \*------------------------------------*/
-$brand--color:          #f43059;
-$brand--round:          4px;
+
+$brand-color--1: #051529;
+$brand-color--2: #061a32;
+$brand-color--3: #0a203a;
+$brand-color--4: #152b49;
+$brand-color--5: #193457;
+
+/**
+ * Alternative background colour settings.
+ */
+
+$brand-alt-text-color:              #677f9c;
+$brand-alt-text-color--important:   #677f9c;
+
+$brand-alt-link-color:              #99ccf4;
+$brand-alt-link-color--hover:       lighten(#99ccf4, 10%);
+$brand-alt-link-color--selected:    #2cadff;

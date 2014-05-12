@@ -1,0 +1,11 @@
+.svg .logo {
+    background-image: url($logo-light--base64);
+}
+
+.lt-ie9 .logo {
+    background-image: url($logo-light--png-base64);
+}
+
+.lt-ie8 .logo {
+    background-image: url($logo-light--png);
+}
