@@ -1,3 +1,18 @@
 /*------------------------------------*\
     #TYPE
 \*------------------------------------*/
+
+/**
+ * Using `url()` instead of `base64` to cut down CSS size. The performance with this method seems to be better.
+ */
+
+@font-face {
+    font-family: "bv-main-icon-set";
+    src:url("#{$fonts-directory}icons/bv-main-icon-set.eot?-1r9580");
+    src:url("#{$fonts-directory}icons/bv-main-icon-set.eot?#iefix-1r9580") format("embedded-opentype"),
+        url("#{$fonts-directory}icons/bv-main-icon-set.woff?-1r9580") format("woff"),
+        url("#{$fonts-directory}icons/bv-main-icon-set.ttf?-1r9580") format("truetype"),
+        url("#{$fonts-directory}icons/bv-main-icon-set.svg?-1r9580#bv-main-icon-set") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
