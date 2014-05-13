@@ -1,3 +1,7 @@
+/*------------------------------------*\
+    #LOGO
+\*------------------------------------*/
+
 .svg .logo {
     background-image: url($logo-light--base64);
 }
@@ -7,5 +11,5 @@
 }
 
 .lt-ie8 .logo {
-    background-image: url($logo-light--png);
+    background-image: url($logo-light-small--png);
 }

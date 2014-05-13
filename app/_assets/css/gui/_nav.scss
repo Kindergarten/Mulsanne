@@ -1,0 +1,90 @@
+/*------------------------------------*\
+    #NAV
+\*------------------------------------*/
+
+
+.nav--alt {
+    .nav__link {
+        line-height: 2.5;
+
+        color: $brand-alt-link-color;
+
+        &:before {
+            background: lighten($brand-color--4, 10%);
+        }
+    }
+
+    .nav__item--active > .nav__link {
+        color: $brand-alt-link-color--selected;
+
+        &:before {
+            background: $brand-alt-link-color--selected;
+        }
+    }
+}
+
+
+// To be used with .nav--alt
+// Uses default text colours
+
+.nav--main {
+    padding: $base--spacing;
+    background: $brand-color--2;
+    @include vendor(transition, all .3s);
+
+    .nav__list {
+
+    }
+
+        // Top Level
+        .nav__item {
+            position: relative;
+
+            > .nav__link {
+                line-height: 3.5;
+
+                background: $brand-color--3;
+            }
+
+            // Second Level
+            .nav__item {
+
+                > .nav__link {
+                    line-height: 2.5;
+
+                    background: $brand-color--4;
+                }
+
+                // Third+ level
+                .nav__item {
+
+                    .nav__link {
+                        background: $brand-color--5;
+                    }
+                }
+            }
+        }
+
+            .nav__link {
+
+                .toggler {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 2em;
+
+                    &:after {
+                        @include arrow-color(down, $brand-alt-link-color);
+                    }
+                }
+
+                .toggler--active {
+                    background: $brand-color--5;
+
+                    &:after {
+                        @include arrow-color(up, $brand-alt-link-color);
+                    }
+                }
+            }
+}

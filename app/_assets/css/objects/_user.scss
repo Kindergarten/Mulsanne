@@ -1,0 +1,31 @@
+/*------------------------------------*\
+   #USER
+\*------------------------------------*/
+
+.user {
+    @extend .cf;
+}
+
+    .user__details {
+        @extend .cf;
+        padding: $base--spacing--small;
+    }
+
+    .user__image {
+        //float: left;
+    }
+
+
+
+
+            .user__name {
+                display: block;
+            }
+
+            .user__team {
+                display: block;
+            }
+
+        .user__options {
+
+        }

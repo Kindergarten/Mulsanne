@@ -10,28 +10,83 @@
 
     <title>Brand View</title>
 
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" />
     <link href="/_assets/css/style.css" rel="stylesheet" />
     <script src="/_assets/bower_components/modernizr/modernizr.js"></script>
 </head>
 <body>
-    <header>
-        <a href="#" class="logo">Brand View</a>
+    <header class="header header--main">
+        <a href="#" class="logo logo--small">Brand View</a>
     </header>
 
-    <nav class="nav">
+    <nav class="nav nav--alt nav--main">
         <ul class="nav__list">
-            <li class="nav__item nav__item--enhanced">
-                <a href="#" class="nav__link"><span class="icon icon--graph"></span>Price &amp; Promotion</a>
-            </li>
-            <li class="nav__item">
-                <a href="#" class="nav__link"><span class="icon icon--pie"></span>Analysis</a>
+            <li class="nav__item nav__item--active">
+                <a href="#" class="nav__link"><span class="icon icon--stats-up"></span>Price &amp; Promotion</a>
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="#"><span class="icon icon--tags"></span>Daily Prices &amp; Promotions</a>
+                        <a href="#" class="nav__link"><span class="icon icon--pie"></span>Analysis <span class="toggler toggler--active"></span></a>
+                        <ul class="nav__list">
+                            <li class="nav__item">
+                                <a href="#" class="nav__link"><span class="icon icon--tags"></span>Daily Prices &amp; Promotions</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="#" class="nav__link"><span class="icon icon--history"></span>Pricing History</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="#" class="nav__link"><span class="icon icon--promo-history"></span>Promotional History</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link"><span class="icon icon--settings"></span>Price Manager</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link"><span class="icon icon--alarm"></span>Alerts</a>
                     </li>
                 </ul>
             </li>
         </ul>
     </nav>
+
+    <nav class="nav nav--alt nav--main">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a href="#" class="nav__link"><span class="icon icon--position"></span>Position</a>
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#" class="nav__link"><span class="icon icon--star3"></span>Reviews &amp; Ratings</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link"><span class="icon icon--pie6"></span>Compliance</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link"><span class="icon icon--placement"></span>Placement</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="user user--alt">
+        <div class="user__details">
+            <img class="user__image" src="//s.gravatar.com/avatar/467d6d1dda0ec71b22ce3f7690a15abe?s=100" />
+            <span class="user__name">Adam Poczatek</span>
+            <small class="user__team">INTERNAL DEVELOPMENT</small>
+        </div>
+        <nav class="user__options nav nav--alt">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="#" class="nav__link"><span class="icon icon--cogs"></span>Settings</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link"><span class="icon icon--info"></span>Help</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link"><span class="icon icon--Power"></span>Log out</a>
+                </li>
+            </ul>
+        </nav>
+    </section>
 </body>
 </html>

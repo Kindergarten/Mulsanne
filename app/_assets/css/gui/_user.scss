@@ -1,0 +1,16 @@
+/*------------------------------------*\
+    #USER
+\*------------------------------------*/
+
+.user--alt {
+    padding: $base--spacing;
+    background: $brand-color--1;
+
+    .user__details {
+        text-align: center;
+    }
+
+        .user__name {
+            color: $brand-alt-text-color--important;
+        }
+}

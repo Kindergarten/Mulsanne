@@ -60,3 +60,56 @@
     background-image: -ms-linear-gradient(top, $start-color 0%,$stop-color 100%); /* IE10+ */
     background-image: linear-gradient(to bottom, $start-color 0%,$stop-color 100%); /* W3C */
 }
+
+
+/**
+ * A mixin to create arrows.
+ */
+
+@mixin arrow-color($direction: down, $color: black) {
+    $position: null;
+
+    @if ($direction == up) {
+        $position: bottom;
+    }
+    @else if ($direction == down) {
+        $position: top;
+    }
+    @else if ($direction == left) {
+        $position: right;
+    }
+    @else {
+        $position: left;
+    }
+
+    border: {
+        color: transparent;
+        #{$position}-color: $color;
+    }
+}
+
+@mixin arrow($size: .5em, $direction: down, $color: black) {
+    $margin-top: 0;
+
+    @if ($direction == up) {
+        $margin-top: -$size * 2 + $size / 2;
+    }
+    @else if ($direction == down) {
+        $margin-top: -$size + $size / 2;
+    }
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: $margin-top auto 0;
+    content: "";
+    width: 0;
+    height: 0;
+    border: {
+        color: transparent;
+        style: solid;
+        width: $size;
+    }
+    @include arrow-color($direction, $color);
+}

@@ -4,9 +4,14 @@
 
 .logo {
     margin: 0;
-    padding-top: 3.5em;
+    padding: 0;
     display: block;
     background-repeat: no-repeat;
     background-position: center center;
     text-indent: -9999px;
+}
+
+.logo--small {
+    width: 10em;
+    height: 2em;
 }

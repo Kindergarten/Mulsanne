@@ -2,14 +2,45 @@
     #LOGO
 \*------------------------------------*/
 
-.nav {}
-
-.nav__list {
-    margin: 0;
+.nav {
     padding: 0;
-    list-style: none;
+
+    & + .nav {
+        padding-top: 0;
+    }
 }
 
-.nav__item {
-    margin: 0;
-}
+    .nav__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+        .nav__item {
+            margin: 0;
+        }
+
+            .nav__link {
+                position: relative;
+                padding: $base--spacing--small;
+                padding-left: $base--spacing + ($base--spacing--small / 1.5);
+                display: block;
+                line-height: 2.5;
+
+                &:before {
+                    position: absolute;
+                    left: $base--spacing--small;
+                    top: $base--spacing--small;
+                    bottom: $base--spacing--small;
+                    width: $base--spacing--small / 1.5;
+                    content: "";
+                    background: $base--link-color;
+                }
+
+                .icon {
+                    position: relative;
+                    top: .15em;
+                    margin-right: $base--spacing--small;
+                    margin-left: $base--spacing--small / 2;
+                }
+            }

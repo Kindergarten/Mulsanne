@@ -13,8 +13,17 @@ $brand-color--5: #193457;
  */
 
 $brand-alt-text-color:              #677f9c;
-$brand-alt-text-color--important:   #677f9c;
+$brand-alt-text-color--important:   #ffffff;
 
 $brand-alt-link-color:              #99ccf4;
 $brand-alt-link-color--hover:       lighten(#99ccf4, 10%);
 $brand-alt-link-color--selected:    #2cadff;
+
+/**
+ * Base spacing.
+ */
+
+
+$brand-spacing--base:   1em;
+$brand-spacing--large:  double($brand-spacing--base);
+$brand-spacing--small:  halve($brand-spacing--base);

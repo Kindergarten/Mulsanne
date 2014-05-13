@@ -1,0 +1,19 @@
+/*------------------------------------*\
+    #TOGGLER
+\*------------------------------------*/
+
+.toggler {
+    position: relative;
+    text-indent: -9999px;
+    display: block;
+
+    &:after {
+        @include arrow(.4em, down);
+    }
+}
+
+.toggler--active {
+    &:after {
+        @include arrow(.4em, up);
+    }
+}
