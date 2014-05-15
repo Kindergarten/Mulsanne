@@ -15,78 +15,107 @@
     <script src="/_assets/bower_components/modernizr/modernizr.js"></script>
 </head>
 <body>
-    <header class="header header--main">
-        <a href="#" class="logo logo--small">Brand View</a>
-    </header>
+    <div class="l-main-header">
+        <header class="header header--main">
+            <div class="l-main-logo">
+                <a href="#" class="logo logo--light logo--small vertical--middle">Brand View</a>
+            </div>
+            <div class="user user--alt">
+                <img class="user__image" src="//s.gravatar.com/avatar/467d6d1dda0ec71b22ce3f7690a15abe?s=50" />
+                <div class="user__details">
+                    <span class="user__name">Adam Poczatek</span>
+                    <small class="user__team">INTERNAL DEVELOPMENT</small>
+                </div>
+            </div>
 
-    <nav class="nav nav--alt nav--main">
-        <ul class="nav__list">
-            <li class="nav__item nav__item--active">
-                <a href="#" class="nav__link"><span class="icon icon--stats-up"></span>Price &amp; Promotion</a>
+            <nav class="nav nav--alt nav--horizontal vertical--middle">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="#" class="nav__link"><span class="icon icon--pie"></span>Analysis <span class="toggler toggler--active"></span></a>
+                        <a href="#" class="nav__link"><span class="icon icon--cogs"></span>Settings</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link"><span class="icon icon--info"></span>Help</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link"><span class="icon icon--Power"></span>Log out</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div class="l-main-wrapper">
+        <div class="l-main-nav">
+            <!---->
+            <nav class="nav nav--alt nav--main nav--collapsed">
+                <ul class="nav__list">
+                    <li class="nav__item nav__item--active">
+                        <a href="#" class="nav__link"><span class="icon icon--stats-up"></span>Price &amp; Promotion</a>
                         <ul class="nav__list">
                             <li class="nav__item">
-                                <a href="#" class="nav__link"><span class="icon icon--tags"></span>Daily Prices &amp; Promotions</a>
+                                <a href="#" class="nav__link"><span class="icon icon--pie"></span>Analysis <span class="toggler toggler--active"></span></a>
+                                <ul class="nav__list">
+                                    <li class="nav__item">
+                                        <a href="#" class="nav__link"><span class="icon icon--tags"></span>Daily Prices &amp; Promotions</a>
+                                    </li>
+                                    <li class="nav__item">
+                                        <a href="#" class="nav__link"><span class="icon icon--history"></span>Pricing History</a>
+                                    </li>
+                                    <li class="nav__item">
+                                        <a href="#" class="nav__link"><span class="icon icon--promo-history"></span>Promotional History</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav__item">
-                                <a href="#" class="nav__link"><span class="icon icon--history"></span>Pricing History</a>
+                                <a href="#" class="nav__link"><span class="icon icon--settings"></span>Price Manager</a>
                             </li>
                             <li class="nav__item">
-                                <a href="#" class="nav__link"><span class="icon icon--promo-history"></span>Promotional History</a>
+                                <a href="#" class="nav__link"><span class="icon icon--alarm"></span>Alerts</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav__item">
-                        <a href="#" class="nav__link"><span class="icon icon--settings"></span>Price Manager</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#" class="nav__link"><span class="icon icon--alarm"></span>Alerts</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-
-    <nav class="nav nav--alt nav--main">
-        <ul class="nav__list">
-            <li class="nav__item">
-                <a href="#" class="nav__link"><span class="icon icon--position"></span>Position</a>
-                <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="#" class="nav__link"><span class="icon icon--star3"></span>Reviews &amp; Ratings</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#" class="nav__link"><span class="icon icon--pie6"></span>Compliance</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#" class="nav__link"><span class="icon icon--placement"></span>Placement</a>
+                        <a href="#" class="nav__link"><span class="icon icon--position"></span>Position</a>
+                        <ul class="nav__list">
+                            <li class="nav__item">
+                                <a href="#" class="nav__link"><span class="icon icon--star3"></span>Reviews &amp; Ratings</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="#" class="nav__link"><span class="icon icon--pie6"></span>Compliance</a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="#" class="nav__link"><span class="icon icon--placement"></span>Placement</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
-            </li>
-        </ul>
-    </nav>
 
-    <section class="user user--alt">
-        <div class="user__details">
-            <img class="user__image" src="//s.gravatar.com/avatar/467d6d1dda0ec71b22ce3f7690a15abe?s=100" />
-            <span class="user__name">Adam Poczatek</span>
-            <small class="user__team">INTERNAL DEVELOPMENT</small>
+                <!--<a href="#" class="nav__control">-->
+                    <!--<span class="nav__toggler toggler"></span>-->
+                    <!--<span class="nav__value">Collapse Menu</span>-->
+                <!--</a>-->
+            </nav>
         </div>
-        <nav class="user__options nav nav--alt">
-            <ul class="nav__list">
-                <li class="nav__item">
-                    <a href="#" class="nav__link"><span class="icon icon--cogs"></span>Settings</a>
-                </li>
-                <li class="nav__item">
-                    <a href="#" class="nav__link"><span class="icon icon--info"></span>Help</a>
-                </li>
-                <li class="nav__item">
-                    <a href="#" class="nav__link"><span class="icon icon--Power"></span>Log out</a>
-                </li>
-            </ul>
-        </nav>
-    </section>
+        <div class="l-main-content">
+            <h1>Heading</h1>
+            <div id="lipsum">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing est quis ullamcorper volutpat. Nam euismod ante id fermentum accumsan. Phasellus adipiscing libero sed suscipit congue. Maecenas nec suscipit velit, at feugiat libero. Praesent id enim condimentum, convallis quam sit amet, lobortis leo. Vestibulum nec varius augue. Aenean ut felis quis ligula fringilla vehicula.
+                </p>
+                <p>
+                    Sed eget nulla in metus vestibulum tincidunt. Aliquam eu tempor tortor. Aenean eu placerat erat, a ultrices leo. Nam magna elit, luctus eu auctor ac, interdum ac orci. Morbi id cursus ipsum, eu congue metus. Sed in elementum arcu. Etiam sodales massa velit, id ullamcorper tortor rutrum at. Praesent a lacinia ligula, sed iaculis nulla. Mauris congue, enim non semper egestas, est lorem fringilla diam, eu egestas nisi elit id augue. Maecenas imperdiet nec mauris sed convallis. Donec quis arcu mauris. Aenean sodales nisl et felis molestie interdum.
+                </p>
+                <p>
+                    Fusce tristique ante erat, ut accumsan sem feugiat a. Integer varius diam purus, vel hendrerit quam sollicitudin ac. Duis cursus risus vitae pharetra euismod. Integer imperdiet condimentum viverra. Nullam non tempus nunc, sit amet rhoncus lorem. Quisque suscipit, libero nec pretium consectetur, justo nibh commodo lectus, sed egestas enim eros nec massa. Fusce malesuada condimentum turpis, ac convallis ligula congue egestas. Nam lectus tortor, fermentum sit amet neque in, blandit elementum sem. Donec fermentum varius arcu sit amet aliquam. Morbi at purus in diam elementum consequat.
+                </p>
+                <p>
+                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sollicitudin lacinia tellus vitae malesuada. Donec quis vulputate orci, eget hendrerit ligula. Morbi interdum consectetur diam, sed blandit orci auctor eget. Sed sit amet tellus nisl. Curabitur luctus nibh fermentum nulla rhoncus, eget consequat turpis viverra. Donec congue consequat nisi imperdiet elementum. Praesent sed vulputate sapien, id egestas augue. Sed tempus dapibus dolor vel placerat.
+                </p>
+                <p>
+                    Etiam rhoncus faucibus sem, ut pretium metus tincidunt et. Donec sodales mauris quam, id auctor velit consequat rhoncus. Proin nisi nisl, tincidunt non dolor at, iaculis pretium lacus. Suspendisse fringilla diam id purus rhoncus dignissim. Etiam in mi feugiat, venenatis sem sed, congue purus. Phasellus sit amet tincidunt ligula. Vivamus nec hendrerit risus, id consequat nunc. Nulla vel fringilla magna. Duis vulputate dui tellus, ac vestibulum dui tempus at. Suspendisse et posuere nisi. Maecenas pharetra feugiat metus eu dignissim. Vestibulum non adipiscing enim. In pulvinar mi et porttitor scelerisque.
+                </p></div>
+        </div>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 </body>
 </html>

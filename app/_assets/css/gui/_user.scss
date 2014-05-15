@@ -3,14 +3,13 @@
 \*------------------------------------*/
 
 .user--alt {
-    padding: $base--spacing;
-    background: $brand-color--1;
-
+    .user__image,
     .user__details {
-        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
     }
 
-        .user__name {
-            color: $brand-alt-text-color--important;
-        }
+    .user__name {
+        color: $brand-alt-text-color--important;
+    }
 }

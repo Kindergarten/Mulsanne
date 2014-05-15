@@ -2,14 +2,27 @@
     #LOGO
 \*------------------------------------*/
 
-.svg .logo {
-    background-image: url($logo-light--base64);
+// For browsers with SVG support.
+.svg {
+    .logo--light {
+        background-image: url($logo-light--base64);
+    }
 }
 
-.lt-ie9 .logo {
-    background-image: url($logo-light--png-base64);
+// For browsers that support base64.
+.lt-ie9 {
+    .logo--light {
+        background-image: url($logo-light-small--png-base64);
+    }
 }
 
-.lt-ie8 .logo {
-    background-image: url($logo-light-small--png);
+// For any other old crap.
+.lt-ie8 {
+    .logo--light {
+        background-image: url($logo-light--png);
+    }
+
+    .logo--small.logo--light {
+        background-image: url($logo-light-small--png);
+    }
 }

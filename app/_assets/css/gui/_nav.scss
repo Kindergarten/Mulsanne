@@ -2,15 +2,23 @@
     #NAV
 \*------------------------------------*/
 
-
+// `.nav--alt` gives some text colours, hover states etc.
+// The purpose of this modifier is to give some consistent colours on `.nav` objects inside header and sidebar.
 .nav--alt {
     .nav__link {
         line-height: 2.5;
-
         color: $brand-alt-link-color;
 
         &:before {
             background: lighten($brand-color--4, 10%);
+        }
+
+        &:hover {
+            color: $brand-alt-link-color--hover;
+
+            &:before {
+                background: $brand-alt-link-color;
+            }
         }
     }
 
@@ -21,16 +29,47 @@
             background: $brand-alt-link-color--selected;
         }
     }
+
+
+
+    .nav__control {
+        line-height: 2;
+    }
+
+        .nav__toggler,
+        .nav__value {
+            display: block;
+        }
+
+        .toggler {
+
+            &:after {
+                @include arrow-modifier(left, $brand-alt-link-color);
+            }
+        }
+
+        .toggler--active {
+            &:after {
+                @include arrow-modifier(right, $brand-alt-link-color);
+            }
+        }
+
+        .nav__value {
+            color: $brand-alt-link-color;
+        }
+
 }
 
 
-// To be used with .nav--alt
-// Uses default text colours
-
+// To be used with `.nav--alt`.
+// This modifier adds some specific styles to the main navigation inside header and sidebar.
 .nav--main {
     padding: $base--spacing;
     background: $brand-color--2;
-    @include vendor(transition, all .3s);
+
+    > .nav__list > .nav__item + .nav__item {
+        margin-top: $base--spacing;
+    }
 
     .nav__list {
 
@@ -44,6 +83,10 @@
                 line-height: 3.5;
 
                 background: $brand-color--3;
+
+                &:hover {
+                    background: lighten($brand-color--3, 1.5%);
+                }
             }
 
             // Second Level
@@ -53,13 +96,22 @@
                     line-height: 2.5;
 
                     background: $brand-color--4;
+
+                    &:hover {
+                        background: lighten($brand-color--4, 2%);
+                    }
                 }
 
                 // Third+ level
                 .nav__item {
 
+                    // Use these settings for third level+ links, therefore no child selector (`>`).
                     .nav__link {
                         background: $brand-color--5;
+
+                        &:hover {
+                            background: lighten($brand-color--5, 2%);
+                        }
                     }
                 }
             }
@@ -75,7 +127,7 @@
                     width: 2em;
 
                     &:after {
-                        @include arrow-color(down, $brand-alt-link-color);
+                        @include arrow-modifier(down, $brand-alt-link-color);
                     }
                 }
 
@@ -83,8 +135,68 @@
                     background: $brand-color--5;
 
                     &:after {
-                        @include arrow-color(up, $brand-alt-link-color);
+                        @include arrow-modifier(up, $brand-alt-link-color);
                     }
                 }
             }
+
+    .nav__control {
+        background: $brand-color--4;
+
+        &:hover {
+            background: lighten($brand-color--4, 2%);
+        }
+    }
+
+
+    &.nav--collapsed {
+        width: 6.5em;
+
+        // First level
+        > .nav__list {
+
+            > .nav__item {
+
+                // Second level
+                > .nav__list {
+
+                    > .nav__item {
+
+                        // Third level
+                        .nav__list {
+                            position: absolute;
+                            left: 100%;
+                            top: 0;
+                            width: 0;
+                            display: block;
+                            overflow: hidden;
+                            @include vendor(transition, all .15s);
+                        }
+
+                        &:hover {
+                            .nav__list {
+                                width: 22em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        .nav__item {
+            width: 4.5em;
+            @include vendor(transition, all .15s);
+
+            &:hover {
+                width: 22em;
+
+                > .nav__list {
+                    .nav__item {
+                        width: 22em;
+                    }
+                }
+            }
+        }
+    }
 }

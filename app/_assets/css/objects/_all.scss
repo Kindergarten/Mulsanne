@@ -5,8 +5,8 @@
  * Pull in all our objects and abstractions.
  */
 @import "logo",
-        "nav",
         "header",
         "toggler",
         "user",
+        "nav", // Dependencies: `toggler'
         "icon";

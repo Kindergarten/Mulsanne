@@ -1,13 +1,9 @@
 /*------------------------------------*\
-    #LOGO
+    #NAV
 \*------------------------------------*/
 
 .nav {
     padding: 0;
-
-    & + .nav {
-        padding-top: 0;
-    }
 }
 
     .nav__list {
@@ -18,6 +14,7 @@
 
         .nav__item {
             margin: 0;
+            @include vendor(transition, all .15s);
         }
 
             .nav__link {
@@ -26,6 +23,16 @@
                 padding-left: $base--spacing + ($base--spacing--small / 1.5);
                 display: block;
                 line-height: 2.5;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                &,
+                &:before {
+                    @include vendor(transition, all .15s);
+                }
+
+                // Navigation "pipe".
 
                 &:before {
                     position: absolute;
@@ -37,10 +44,158 @@
                     background: $base--link-color;
                 }
 
+                &:hover {
+
+                    &:before {
+                        top: $base--spacing--small / 2;
+                        bottom: $base--spacing--small / 2;
+                    }
+                }
+
+
+                // Basic icon styling.
+
                 .icon {
                     position: relative;
                     top: .15em;
                     margin-right: $base--spacing--small;
                     margin-left: $base--spacing--small / 2;
                 }
+
+
+                // Basic toggler styling.
+
+                .toggler {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 2em;
+                }
             }
+
+    // Controller used to manipulate with the nav (e.g. navigation toggler).
+    .nav__control {
+        @include vendor(transition, all .15s);
+        position: relative;
+        margin-top: $base--spacing;
+        padding: $base--spacing--small;
+        display: block;
+
+        @extend .cf;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+        .nav__toggler,
+        .nav__value {
+            display: block;
+        }
+
+        .nav__toggler {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 2em;
+            display: block;
+        }
+
+        .nav__value {
+            float: left;
+            display: block;
+
+            .nav__toggler + & {
+                margin-left: 2em;
+            }
+        }
+
+
+.nav--horizontal {
+
+    .nav__list {
+        @extend .cf;
+
+        display: flex;
+        flex-wrap: wrap;
+
+        .flexbox & {
+
+            // Center align text only if flexbox is available.
+            text-align: center;
+        }
+    }
+
+        .nav__item {
+            float: left;
+            flex: 1;
+        }
+
+            .nav__link {
+                padding: $base--spacing--small;
+
+                &:before {
+                    display: none;
+                }
+
+                .icon {
+                    margin-left: auto;
+                }
+            }
+}
+
+
+.nav--collapsed {
+
+    // First level
+    > .nav__list {
+        > .nav__item {
+            //width: 4.5em;
+
+            // Second level
+            > .nav__list {
+
+                > .nav__item {
+
+                    // Third level
+                    .nav__list {
+                        display: none;
+                    }
+
+                    &:hover {
+                        .nav__list {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    .nav__list {
+
+    }
+
+        .nav__item {
+            &:hover {
+                width: auto;
+            }
+        }
+
+            .nav__link {
+                text-overflow: clip;
+
+
+
+                .icon {
+                    margin-right: $base--spacing * 1.5;
+                }
+
+                .toggler {
+                    display: none;
+                }
+            }
+}

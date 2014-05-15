@@ -66,7 +66,25 @@
  * A mixin to create arrows.
  */
 
-@mixin arrow-color($direction: down, $color: black) {
+// `arrow-direction` mixin is used to set new arrow direction.
+@mixin arrow-direction($direction: down, $size: .5em) {
+    $margin-top: 0;
+
+    @if ($direction == up) {
+        $margin-top: -$size;
+    }
+    @else if ($direction == down) {
+        $margin-top: 0;
+    }
+    @else {
+        $margin-top: -$size / 2;
+    }
+
+    margin: $margin-top auto 0;
+}
+
+
+@mixin arrow-modifier($direction: down, $color: black, $size: .5em) {
     $position: null;
 
     @if ($direction == up) {
@@ -82,27 +100,19 @@
         $position: left;
     }
 
+    @include arrow-direction($direction, $size);
     border: {
         color: transparent;
         #{$position}-color: $color;
     }
 }
 
+
 @mixin arrow($size: .5em, $direction: down, $color: black) {
-    $margin-top: 0;
-
-    @if ($direction == up) {
-        $margin-top: -$size * 2 + $size / 2;
-    }
-    @else if ($direction == down) {
-        $margin-top: -$size + $size / 2;
-    }
-
     position: absolute;
     top: 50%;
     left: 0;
     right: 0;
-    margin: $margin-top auto 0;
     content: "";
     width: 0;
     height: 0;
@@ -111,5 +121,5 @@
         style: solid;
         width: $size;
     }
-    @include arrow-color($direction, $color);
+    @include arrow-modifier($direction, $color);
 }
