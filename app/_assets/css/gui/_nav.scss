@@ -5,30 +5,40 @@
 // `.nav--alt` gives some text colours, hover states etc.
 // The purpose of this modifier is to give some consistent colours on `.nav` objects inside header and sidebar.
 .nav--alt {
-    .nav__link {
-        line-height: 2.5;
-        color: $brand-alt-link-color;
 
-        &:before {
-            background: lighten($brand-color--4, 10%);
-        }
+    .nav__item {
 
         &:hover {
-            color: $brand-alt-link-color--hover;
+            > .nav__link {
+                color: $brand-alt-link-color--hover;
 
-            &:before {
-                background: $brand-alt-link-color;
+                &:before {
+                    background: $brand-alt-link-color;
+                }
             }
         }
     }
 
-    .nav__item--active > .nav__link {
-        color: $brand-alt-link-color--selected;
+        .nav__link {
+            line-height: 2.5;
+            color: $brand-alt-link-color;
 
-        &:before {
-            background: $brand-alt-link-color--selected;
+            &:before {
+                background: lighten($brand-color--4, 10%);
+            }
         }
-    }
+
+        .nav__item {
+
+        }
+
+        .nav__item--active > .nav__link {
+            color: $brand-alt-link-color--selected;
+
+            &:before {
+                background: $brand-alt-link-color--selected;
+            }
+        }
 
 
 
@@ -41,23 +51,38 @@
             display: block;
         }
 
-        .toggler {
-
-            &:after {
-                @include arrow-modifier(left, $brand-alt-link-color);
-            }
-        }
-
-        .toggler--active {
-            &:after {
-                @include arrow-modifier(right, $brand-alt-link-color);
-            }
-        }
-
         .nav__value {
             color: $brand-alt-link-color;
         }
 
+        .nav__toggler {
+            z-index: 1;
+        }
+
+        .nav__toggler--menu {
+            &:after {
+                @include arrow(.4em, up, $brand-alt-link-color);
+            }
+        }
+
+        .nav__control--active .nav__toggler--menu,
+        .nav__toggler--menu.nav__toggler--active {
+            &:after {
+                @include arrow-modifier(down, $brand-alt-link-color);
+            }
+        }
+
+        .nav__toggler--menu-item {
+            &:after {
+                @include arrow(.4em, down, $brand-alt-link-color);
+            }
+        }
+
+        .nav__toggler--menu-item.nav__toggler--active {
+            &:after {
+                @include arrow-modifier(up, $brand-alt-link-color);
+            }
+        }
 }
 
 
@@ -65,19 +90,21 @@
 // This modifier adds some specific styles to the main navigation inside header and sidebar.
 .nav--main {
     padding: $base--spacing;
+    width: 100%;
     background: $brand-color--2;
 
-    > .nav__list > .nav__item + .nav__item {
-        margin-top: $base--spacing;
+
+    > .nav__list {
+        > .nav__item + .nav__item {
+            margin-top: $base--spacing;
+        }
     }
 
-    .nav__list {
-
-    }
 
         // Top Level
         .nav__item {
             position: relative;
+            width: 100%;
 
             > .nav__link {
                 line-height: 3.5;
@@ -96,8 +123,10 @@
                     line-height: 2.5;
 
                     background: $brand-color--4;
+                }
 
-                    &:hover {
+                &:hover {
+                    > .nav__link {
                         background: lighten($brand-color--4, 2%);
                     }
                 }
@@ -117,39 +146,52 @@
             }
         }
 
-            .nav__link {
-
-                .toggler {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    bottom: 0;
-                    width: 2em;
-
-                    &:after {
-                        @include arrow-modifier(down, $brand-alt-link-color);
-                    }
+                .icon {
+                    @include vendor(transition, color .15s);
                 }
-
-                .toggler--active {
-                    background: $brand-color--5;
-
-                    &:after {
-                        @include arrow-modifier(up, $brand-alt-link-color);
-                    }
-                }
-            }
 
     .nav__control {
         background: $brand-color--4;
+        overflow: hidden;
 
         &:hover {
             background: lighten($brand-color--4, 2%);
         }
     }
 
+        .nav__value {
+            visibility: visible;
+            white-space: nowrap;
+        }
+}
 
-    &.nav--collapsed {
+@media all and (min-width: $base--breakpoint--small) {
+
+    .nav--alt {
+        height: 100%;
+        min-height: 100%;
+        
+        .nav__toggler--menu {
+            &:after {
+                @include arrow-modifier(left, $brand-alt-link-color);
+            }
+        }
+
+        .nav__control--active .nav__toggler--menu,
+        .nav__toggler--menu.nav__toggler--active {
+
+            &:after {
+                @include arrow-modifier(right, $brand-alt-link-color);
+            }
+        }
+    }
+
+    .nav--main {
+        width: 22em;
+    }
+
+    // Not suitable with `nav--horizontal`.
+    .nav--collapsed {
         width: 6.5em;
 
         // First level
@@ -167,26 +209,15 @@
                             position: absolute;
                             left: 100%;
                             top: 0;
-                            width: 0;
-                            display: block;
-                            overflow: hidden;
-                            @include vendor(transition, all .15s);
-                        }
-
-                        &:hover {
-                            .nav__list {
-                                width: 22em;
-                            }
                         }
                     }
                 }
             }
         }
 
-
         .nav__item {
             width: 4.5em;
-            @include vendor(transition, all .15s);
+            @extend .transition--all;
 
             &:hover {
                 width: 22em;
@@ -196,6 +227,49 @@
                         width: 22em;
                     }
                 }
+            }
+        }
+
+
+        .nav__control--active .nav__toggler--menu,
+        .nav__toggler--menu.nav__toggler--active {
+            right: 0;
+            margin: 0 auto;
+        }
+
+
+        .nav__toggler--menu-item,
+        .nav__toggler--menu-item.nav__toggler--active {
+            &:after {
+                //.lt-ie9 & {
+                    display: none;
+                //}
+
+                opacity: 0;
+
+                @include arrow-modifier(right, $brand-alt-link-color);
+                @extend .transition--all;
+            }
+        }
+
+        .nav__item {
+            &:hover {
+                .nav__toggler--menu-item,
+                .nav__toggler--menu-item.nav__toggler--active {
+                    &:after {
+                        //.lt-ie9 & {
+                            display: block;
+                        //}
+
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .nav__control--active {
+            .nav__value {
+                visibility: hidden;
             }
         }
     }

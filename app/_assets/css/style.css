@@ -523,12 +523,13 @@ html {
   height: 100%;
   overflow-y: scroll; }
 
-
 @media all and (min-width: 40em) {
   html {
     font-size: 0.8125em;
     /* [1] */
-    font-weight: 400; } }
+    font-weight: 400; }
+  body {
+    height: 100%; } }
 
 @media all and (min-width: 80em) {
   html {
@@ -579,6 +580,7 @@ a {
     #HEADER
 \*------------------------------------*/
 .header {
+  width: 100%;
   padding: 1em; }
 
 /*------------------------------------*\
@@ -645,28 +647,20 @@ a {
   list-style: none; }
 
 .nav__item {
-  margin: 0;
-  -webkit-transition: all 0.15s;
-  -moz-transition: all 0.15s;
-  -ms-transition: all 0.15s;
-  -o-transition: all 0.15s;
-  transition: all 0.15s; }
+  position: relative;
+  margin: 0; }
 
-.nav__link {
+.nav__toggler, .nav__link {
   position: relative;
   padding: 0.5em;
-  padding-left: 1.33333em;
   display: block;
   line-height: 2.5;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; }
-  .nav__link, .nav__link:before {
-    -webkit-transition: all 0.15s;
-    -moz-transition: all 0.15s;
-    -ms-transition: all 0.15s;
-    -o-transition: all 0.15s;
-    transition: all 0.15s; }
+
+.nav__link {
+  padding-left: 1.33333em; }
   .nav__link:before {
     position: absolute;
     left: 0.5em;
@@ -683,23 +677,12 @@ a {
     top: 0.15em;
     margin-right: 0.5em;
     margin-left: 0.25em; }
-  .nav__link .toggler {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 2em; }
 
 .nav__control {
-  -webkit-transition: all 0.15s;
-  -moz-transition: all 0.15s;
-  -ms-transition: all 0.15s;
-  -o-transition: all 0.15s;
-  transition: all 0.15s;
   position: relative;
-  margin-top: 1em;
   padding: 0.5em;
-  display: block; }
+  display: block;
+  text-align: center; }
   .nav__control:last-child {
     margin-bottom: 0; }
 
@@ -709,24 +692,30 @@ a {
 .nav__toggler {
   position: absolute;
   top: 0;
-  left: 0;
-  bottom: 0;
   width: 2em;
-  display: block; }
+  display: block;
+  text-indent: -9999px; }
+
+.nav__toggler--menu {
+  left: 0;
+  height: 100%; }
+
+.nav__toggler--menu-item {
+  right: 0; }
 
 .nav__value {
-  float: left;
   display: block; }
-  .nav__toggler + .nav__value {
-    margin-left: 2em; }
 
-.nav--horizontal .nav__list {
+.no-flexbox .nav--horizontal .nav__list {
+  width: 100%;
+  display: table; }
+.flexbox .nav--horizontal .nav__list {
   display: flex;
-  flex-wrap: wrap; }
-  .flexbox .nav--horizontal .nav__list {
-    text-align: center; }
-.nav--horizontal .nav__item {
-  float: left;
+  flex-wrap: wrap;
+  text-align: center; }
+.no-flexbox .nav--horizontal .nav__item {
+  display: table-cell; }
+.flexbox .nav--horizontal .nav__item {
   flex: 1; }
 .nav--horizontal .nav__link {
   padding: 0.5em; }
@@ -735,18 +724,30 @@ a {
   .nav--horizontal .nav__link .icon {
     margin-left: auto; }
 
-.nav--collapsed > .nav__list > .nav__item > .nav__list > .nav__item .nav__list {
-  display: none; }
-.nav--collapsed > .nav__list > .nav__item > .nav__list > .nav__item:hover .nav__list {
-  display: block; }
-.nav--collapsed .nav__item:hover {
-  width: auto; }
-.nav--collapsed .nav__link {
-  text-overflow: clip; }
-  .nav--collapsed .nav__link .icon {
-    margin-right: 1.5em; }
-  .nav--collapsed .nav__link .toggler {
-    display: none; }
+.nav--collapsed .nav__list {
+  height: 0;
+  overflow: hidden; }
+
+@media all and (min-width: 40em) {
+  .nav--collapsed .nav__list {
+    height: auto; }
+  .nav--main.nav--collapsed .nav__list {
+    height: auto;
+    overflow: visible; }
+  .nav--main.nav--collapsed > .nav__list > .nav__item > .nav__list > .nav__item .nav__list {
+    width: 0;
+    display: block;
+    overflow: hidden; }
+  .nav--main.nav--collapsed > .nav__list > .nav__item > .nav__list > .nav__item:hover .nav__list {
+    width: 22em; }
+  .nav--main.nav--collapsed .nav__link {
+    text-overflow: clip; }
+    .nav--main.nav--collapsed .nav__link .icon {
+      margin-right: 1.5em; }
+    .nav--main.nav--collapsed .nav__link .toggler {
+      display: none; }
+  .nav__control {
+    margin-top: 1em; } }
 
 .icon {
   font-family: "bv-main-icon-set";
@@ -798,15 +799,15 @@ a {
 /*------------------------------------*\
     #NAV
 \*------------------------------------*/
+.nav--alt .nav__item:hover > .nav__link {
+  color: #c7e3f9; }
+  .nav--alt .nav__item:hover > .nav__link:before {
+    background: #99ccf4; }
 .nav--alt .nav__link {
   line-height: 2.5;
   color: #99ccf4; }
   .nav--alt .nav__link:before {
     background: #204371; }
-  .nav--alt .nav__link:hover {
-    color: #c7e3f9; }
-    .nav--alt .nav__link:hover:before {
-      background: #99ccf4; }
 .nav--alt .nav__item--active > .nav__link {
   color: #2cadff; }
   .nav--alt .nav__item--active > .nav__link:before {
@@ -815,24 +816,56 @@ a {
   line-height: 2; }
 .nav--alt .nav__toggler, .nav--alt .nav__value {
   display: block; }
-.nav--alt .toggler:after {
-  margin: -0.25em auto 0;
-  border-color: transparent;
-  border-right-color: #99ccf4; }
-.nav--alt .toggler--active:after {
-  margin: -0.25em auto 0;
-  border-color: transparent;
-  border-left-color: #99ccf4; }
 .nav--alt .nav__value {
   color: #99ccf4; }
+.nav--alt .nav__toggler {
+  z-index: 1; }
+.nav--alt .nav__toggler--menu:after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  content: "";
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 0.4em;
+  margin: -0.5em auto 0;
+  border-color: transparent;
+  border-bottom-color: #99ccf4; }
+.nav--alt .nav__control--active .nav__toggler--menu:after, .nav--alt .nav__toggler--menu.nav__toggler--active:after {
+  margin: 0 auto 0;
+  border-color: transparent;
+  border-top-color: #99ccf4; }
+.nav--alt .nav__toggler--menu-item:after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  content: "";
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 0.4em;
+  margin: 0 auto 0;
+  border-color: transparent;
+  border-top-color: #99ccf4; }
+.nav--alt .nav__toggler--menu-item.nav__toggler--active:after {
+  margin: -0.5em auto 0;
+  border-color: transparent;
+  border-bottom-color: #99ccf4; }
 
 .nav--main {
   padding: 1em;
+  width: 100%;
   background: #061a32; }
   .nav--main > .nav__list > .nav__item + .nav__item {
     margin-top: 1em; }
   .nav--main .nav__item {
-    position: relative; }
+    position: relative;
+    width: 100%; }
     .nav--main .nav__item > .nav__link {
       line-height: 3.5;
       background: #0a203a; }
@@ -841,59 +874,67 @@ a {
     .nav--main .nav__item .nav__item > .nav__link {
       line-height: 2.5;
       background: #152b49; }
-      .nav--main .nav__item .nav__item > .nav__link:hover {
-        background: #173051; }
+    .nav--main .nav__item .nav__item:hover > .nav__link {
+      background: #173051; }
     .nav--main .nav__item .nav__item .nav__item .nav__link {
       background: #193457; }
       .nav--main .nav__item .nav__item .nav__item .nav__link:hover {
         background: #1b3a5f; }
-  .nav--main .nav__link .toggler {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 2em; }
-    .nav--main .nav__link .toggler:after {
-      margin: 0 auto 0;
-      border-color: transparent;
-      border-top-color: #99ccf4; }
-  .nav--main .nav__link .toggler--active {
-    background: #193457; }
-    .nav--main .nav__link .toggler--active:after {
-      margin: -0.5em auto 0;
-      border-color: transparent;
-      border-bottom-color: #99ccf4; }
+  .nav--main .icon {
+    -webkit-transition: color 0.15s;
+    -moz-transition: color 0.15s;
+    -ms-transition: color 0.15s;
+    -o-transition: color 0.15s;
+    transition: color 0.15s; }
   .nav--main .nav__control {
-    background: #152b49; }
+    background: #152b49;
+    overflow: hidden; }
     .nav--main .nav__control:hover {
       background: #173051; }
-  .nav--main.nav--collapsed {
+  .nav--main .nav__value {
+    visibility: visible;
+    white-space: nowrap; }
+
+@media all and (min-width: 40em) {
+  .nav--alt {
+    height: 100%;
+    min-height: 100%; }
+    .nav--alt .nav__toggler--menu:after {
+      margin: -0.5em auto 0;
+      border-color: transparent;
+      border-right-color: #99ccf4; }
+    .nav--alt .nav__control--active .nav__toggler--menu:after, .nav--alt .nav__toggler--menu.nav__toggler--active:after {
+      margin: -0.5em auto 0;
+      border-color: transparent;
+      border-left-color: #99ccf4; }
+  .nav--main {
+    width: 22em; }
+  .nav--collapsed {
     width: 6.5em; }
-    .nav--main.nav--collapsed > .nav__list > .nav__item > .nav__list > .nav__item .nav__list {
+    .nav--collapsed > .nav__list > .nav__item > .nav__list > .nav__item .nav__list {
       position: absolute;
       left: 100%;
-      top: 0;
-      width: 0;
-      display: block;
-      overflow: hidden;
-      -webkit-transition: all 0.15s;
-      -moz-transition: all 0.15s;
-      -ms-transition: all 0.15s;
-      -o-transition: all 0.15s;
-      transition: all 0.15s; }
-    .nav--main.nav--collapsed > .nav__list > .nav__item > .nav__list > .nav__item:hover .nav__list {
-      width: 22em; }
-    .nav--main.nav--collapsed .nav__item {
-      width: 4.5em;
-      -webkit-transition: all 0.15s;
-      -moz-transition: all 0.15s;
-      -ms-transition: all 0.15s;
-      -o-transition: all 0.15s;
-      transition: all 0.15s; }
-      .nav--main.nav--collapsed .nav__item:hover {
+      top: 0; }
+    .nav--collapsed .nav__item {
+      width: 4.5em; }
+      .nav--collapsed .nav__item:hover {
         width: 22em; }
-        .nav--main.nav--collapsed .nav__item:hover > .nav__list .nav__item {
+        .nav--collapsed .nav__item:hover > .nav__list .nav__item {
           width: 22em; }
+    .nav--collapsed .nav__control--active .nav__toggler--menu, .nav--collapsed .nav__toggler--menu.nav__toggler--active {
+      right: 0;
+      margin: 0 auto; }
+    .nav--collapsed .nav__toggler--menu-item:after, .nav--collapsed .nav__toggler--menu-item.nav__toggler--active:after {
+      display: none;
+      opacity: 0;
+      margin: -0.5em auto 0;
+      border-color: transparent;
+      border-left-color: #99ccf4; }
+    .nav--collapsed .nav__item:hover .nav__toggler--menu-item:after, .nav--collapsed .nav__item:hover .nav__toggler--menu-item.nav__toggler--active:after {
+      display: block;
+      opacity: 1; }
+    .nav--collapsed .nav__control--active .nav__value {
+      visibility: hidden; } }
 
 /*------------------------------------*\
     #TOGGLER
@@ -910,24 +951,48 @@ a {
 /*------------------------------------*\
     #PAGES
 \*------------------------------------*/
+/**
+ * Anything non-generic goes here. Try to limit it to the minimum.
+ */
+/**
+ * Header and Sidebar - Layout styling.
+ */
+@media all and (max-width: 40em) {
+  .l-main--header {
+    text-align: center; }
+  .l-main--logo, .l-main--user {
+    margin: 1em 0; }
+  .l-main--controls .icon {
+    display: block;
+    margin: 0 auto; } }
+
 @media all and (min-width: 40em) {
-  .l-main-header .header {
+  body {
+    padding-top: 4.65em; }
+  .l-main--header {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    display: table;
-    vertical-align: top; }
-  .l-main-header .l-main-logo, .l-main-header .user, .l-main-header .nav {
-    display: table-cell; }
-  .l-main-header .user {
-    width: 15em; }
-  .l-main-header .nav {
+    height: 4.65em;
+    display: table; }
+  .l-main--section {
+    display: table-cell;
+    vertical-align: middle; }
+  .l-main--user {
+    width: 1%;
+    white-space: nowrap; }
+  .l-main--controls {
     width: 22em; }
-  .l-main-wrapper {
+  .l-main--wrapper {
     display: table;
     width: 100%;
     height: 100%; }
-  .l-main-nav, .l-main-content {
+  .l-main--nav, .l-main--content {
     display: table-cell;
-    vertical-align: top; } }
+    vertical-align: top; }
+  .l-main--nav {
+    background: #061a32; } }
 
 /*------------------------------------*\
     #ICON
@@ -1707,3 +1772,10 @@ a {
 
 .vertical--middle {
   vertical-align: middle; }
+
+.transition--all, .nav__toggler, .nav__link, .nav__link:before, .nav__control, .nav--main.nav--collapsed > .nav__list > .nav__item > .nav__list > .nav__item .nav__list, .nav--collapsed .nav__item, .nav--collapsed .nav__toggler--menu-item:after, .nav--collapsed .nav__toggler--menu-item.nav__toggler--active:after {
+  -webkit-transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -ms-transition: all 0.15s;
+  -o-transition: all 0.15s;
+  transition: all 0.15s; }

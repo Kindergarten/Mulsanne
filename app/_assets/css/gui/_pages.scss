@@ -2,53 +2,87 @@
     #PAGES
 \*------------------------------------*/
 
-// Main layout styling.
+/**
+ * Anything non-generic goes here. Try to limit it to the minimum.
+ */
 
-@media all and (min-width: $base--breakpoint--small) {
-    body {
-        //padding-top: 5em;
+
+/**
+ * Header and Sidebar - Layout styling.
+ */
+
+// Mobile version only.
+@media all and (max-width: $base--breakpoint--small) {
+
+    // Make sure everything is aligned in the center.
+    .l-main--header {
+        text-align: center;
     }
 
-    .l-main-header  {
-
-        .header {
-            width: 100%;
-            display: table;
-            vertical-align: top;
+        // Add some spacing around logo and the user panel.
+        .l-main--logo,
+        .l-main--user {
+            margin: 1em 0;
         }
 
-            .l-main-logo,
-            .user,
-            .nav {
-                display: table-cell;
+        // Drop controls text below the icons for small screens.
+        .l-main--controls {
+            .icon {
+                display: block;
+                margin: 0 auto;
             }
+        }
+}
 
-            .l-main-logo {
-                //float: left;
-            }
 
-            .user {
-                width: 15em;
-            }
+// Anything other than mobile.
+@media all and (min-width: $base--breakpoint--small) {
 
-            .nav {
-                width: 22em;
-            }
+    body {
+        padding-top: 4.65em;
     }
 
-    .l-main-wrapper {
+    // Header section.
+    .l-main--header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4.65em;
+        display: table;
+    }
+
+    .l-main--section {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .l-main--user {
+        // Adjust size based on the content.
+        width: 1%;
+        white-space: nowrap;
+    }
+
+    .l-main--controls {
+        width: 22em;
+    }
+
+
+    // Content and sidebar section.
+    .l-main--wrapper {
         display: table;
         width: 100%;
         height: 100%;
     }
 
-    .l-main-nav,
-    .l-main-content {
+    .l-main--nav,
+    .l-main--content {
         display: table-cell;
         vertical-align: top;
     }
 
-    .l-main-nav {
-        //width: 22em;
+    .l-main--nav {
+        background: $brand-color--2;
     }
+
 }

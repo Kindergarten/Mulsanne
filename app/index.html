@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 unsupported-ie"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 unsupported-ie"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 unsupported-ie" data-ng-app="bv"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 unsupported-ie" data-ng-app="bv"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" data-ng-app="bv"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" data-ng-app="bv"> <!--<![endif]-->
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,44 +15,52 @@
     <script src="/_assets/bower_components/modernizr/modernizr.js"></script>
 </head>
 <body>
-    <div class="l-main-header">
+    <div class="l-main--header">
         <header class="header header--main">
-            <div class="l-main-logo">
+
+            <div class="l-main--section l-main--logo">
                 <a href="#" class="logo logo--light logo--small vertical--middle">Brand View</a>
             </div>
-            <div class="user user--alt">
-                <img class="user__image" src="//s.gravatar.com/avatar/467d6d1dda0ec71b22ce3f7690a15abe?s=50" />
-                <div class="user__details">
-                    <span class="user__name">Adam Poczatek</span>
-                    <small class="user__team">INTERNAL DEVELOPMENT</small>
+
+            <div class="l-main--section l-main--user">
+                <div class="user user--alt">
+                    <img class="user__image" src="//s.gravatar.com/avatar/467d6d1dda0ec71b22ce3f7690a15abe?s=50" />
+                    <div class="user__details">
+                        <span class="user__name">Adam Poczatek</span>
+                        <small class="user__team">INTERNAL DEVELOPMENT</small>
+                    </div>
                 </div>
             </div>
 
-            <nav class="nav nav--alt nav--horizontal vertical--middle">
-                <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="#" class="nav__link"><span class="icon icon--cogs"></span>Settings</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#" class="nav__link"><span class="icon icon--info"></span>Help</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#" class="nav__link"><span class="icon icon--Power"></span>Log out</a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="l-main--section l-main--controls">
+                <nav class="nav nav--alt nav--horizontal vertical--middle">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#" class="nav__link"><span class="icon icon--cogs"></span>Settings</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#" class="nav__link"><span class="icon icon--info"></span>Help</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#" class="nav__link"><span class="icon icon--Power"></span>Log out</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </header>
     </div>
-    <div class="l-main-wrapper">
-        <div class="l-main-nav">
-            <!---->
-            <nav class="nav nav--alt nav--main nav--collapsed">
+
+    <div class="l-main--wrapper" data-ng-controller="navCtrl">
+        <div class="l-main--nav">
+            <!--    nav--horizontal-->
+            <nav data-ng-class="{'nav--collapsed': navCollapsed }" class="nav nav--alt nav--main">
                 <ul class="nav__list">
                     <li class="nav__item nav__item--active">
                         <a href="#" class="nav__link"><span class="icon icon--stats-up"></span>Price &amp; Promotion</a>
                         <ul class="nav__list">
                             <li class="nav__item">
-                                <a href="#" class="nav__link"><span class="icon icon--pie"></span>Analysis <span class="toggler toggler--active"></span></a>
+                                <a href="#" class="nav__toggler nav__toggler--menu-item nav__toggler--active">Show/Hide</a>
+                                <a href="#" class="nav__link"><span class="icon icon--pie"></span>Analysis</a>
                                 <ul class="nav__list">
                                     <li class="nav__item">
                                         <a href="#" class="nav__link"><span class="icon icon--tags"></span>Daily Prices &amp; Promotions</a>
@@ -89,13 +97,13 @@
                     </li>
                 </ul>
 
-                <!--<a href="#" class="nav__control">-->
-                    <!--<span class="nav__toggler toggler"></span>-->
-                    <!--<span class="nav__value">Collapse Menu</span>-->
-                <!--</a>-->
+                <a data-ng-class="{'nav__control--active': navCollapsed}" class="nav__control" data-ng-click="toggleNav()">
+                    <span class="nav__toggler nav__toggler--menu"></span>
+                    <span class="nav__value">{{ navCollapsed ? 'Expand' : 'Collapse' }} Menu</span>
+                </a>
             </nav>
         </div>
-        <div class="l-main-content">
+        <div class="l-main--content">
             <h1>Heading</h1>
             <div id="lipsum">
                 <p>
@@ -116,6 +124,18 @@
         </div>
     </div>
 
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script>
+        var app = angular.module("bv", []);
+
+        app.controller("navCtrl", function ($scope) {
+            $scope.navCollapsed = false;
+
+            $scope.toggleNav = function (e) {
+                $scope.navCollapsed = !$scope.navCollapsed;
+            };
+        });
+    </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 </body>
 </html>

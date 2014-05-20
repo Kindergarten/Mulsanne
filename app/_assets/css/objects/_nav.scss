@@ -2,6 +2,8 @@
     #NAV
 \*------------------------------------*/
 
+// Applying transition to multiple selectors to avoid code duplication.
+
 .nav {
     padding: 0;
 }
@@ -13,23 +15,29 @@
     }
 
         .nav__item {
+            position: relative;
             margin: 0;
-            @include vendor(transition, all .15s);
         }
 
+            .nav__toggler,
             .nav__link {
                 position: relative;
                 padding: $base--spacing--small;
-                padding-left: $base--spacing + ($base--spacing--small / 1.5);
                 display: block;
                 line-height: 2.5;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
 
-                &,
+                @extend .transition--all;
+
+            }
+
+            .nav__link {
+                padding-left: $base--spacing + ($base--spacing--small / 1.5);
+
                 &:before {
-                    @include vendor(transition, all .15s);
+                    @extend .transition--all;
                 }
 
                 // Navigation "pipe".
@@ -62,27 +70,18 @@
                     margin-left: $base--spacing--small / 2;
                 }
 
-
-                // Basic toggler styling.
-
-                .toggler {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    bottom: 0;
-                    width: 2em;
-                }
             }
+
 
     // Controller used to manipulate with the nav (e.g. navigation toggler).
     .nav__control {
-        @include vendor(transition, all .15s);
         position: relative;
-        margin-top: $base--spacing;
         padding: $base--spacing--small;
         display: block;
+        text-align: center;
 
         @extend .cf;
+        @extend .transition--all;
 
         &:last-child {
             margin-bottom: 0;
@@ -97,19 +96,22 @@
         .nav__toggler {
             position: absolute;
             top: 0;
-            left: 0;
-            bottom: 0;
             width: 2em;
             display: block;
+            text-indent: -9999px;
+        }
+
+        .nav__toggler--menu {
+            left: 0;
+            height: 100%;
+        }
+
+        .nav__toggler--menu-item {
+            right: 0;
         }
 
         .nav__value {
-            float: left;
             display: block;
-
-            .nav__toggler + & {
-                margin-left: 2em;
-            }
         }
 
 
@@ -118,19 +120,29 @@
     .nav__list {
         @extend .cf;
 
-        display: flex;
-        flex-wrap: wrap;
+        .no-flexbox & {
+            width: 100%;
+            display: table;
+        }
 
         .flexbox & {
-
+            display: flex;
+            flex-wrap: wrap;
             // Center align text only if flexbox is available.
             text-align: center;
         }
     }
 
         .nav__item {
-            float: left;
-            flex: 1;
+
+            .no-flexbox & {
+                display: table-cell;
+            }
+
+            .flexbox & {
+
+                flex: 1;
+            }
         }
 
             .nav__link {
@@ -146,56 +158,77 @@
             }
 }
 
-
+// Not suitable with `nav--horizontal`.
 .nav--collapsed {
+    .nav__list {
+        height: 0;
+        overflow: hidden;
+    }
+}
 
-    // First level
-    > .nav__list {
-        > .nav__item {
-            //width: 4.5em;
+@media all and (min-width: $base--breakpoint--small) {
+    .nav--collapsed {
+        .nav__list {
+            height: auto;
+        }
+    }
 
-            // Second level
-            > .nav__list {
+    .nav--main.nav--collapsed {
 
-                > .nav__item {
+        .nav__list {
+            height: auto;
+            overflow: visible;
+        }
 
-                    // Third level
-                    .nav__list {
-                        display: none;
-                    }
+        // First level
+        > .nav__list {
+            > .nav__item {
 
-                    &:hover {
+                // Second level
+                > .nav__list {
+
+                    > .nav__item {
+
+                        // Third level
                         .nav__list {
+                            width: 0;
                             display: block;
+                            overflow: hidden;
+                            @extend .transition--all;
+                        }
+
+                        &:hover {
+                            .nav__list {
+                                width: 22em;
+                            }
                         }
                     }
                 }
             }
         }
-    }
 
+        .nav__list {
 
-    .nav__list {
-
-    }
-
-        .nav__item {
-            &:hover {
-                width: auto;
-            }
         }
 
-            .nav__link {
-                text-overflow: clip;
+            .nav__item {
 
-
-
-                .icon {
-                    margin-right: $base--spacing * 1.5;
-                }
-
-                .toggler {
-                    display: none;
-                }
             }
+
+                .nav__link {
+                    text-overflow: clip;
+
+                    .icon {
+                        margin-right: $base--spacing * 1.5;
+                    }
+
+                    .toggler {
+                        display: none;
+                    }
+                }
+    }
+
+    .nav__control {
+        margin-top: $base--spacing;
+    }
 }
